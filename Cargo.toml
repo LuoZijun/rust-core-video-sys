@@ -1,0 +1,15 @@
+[package]
+name = "corevideo-sys"
+version = "0.0.1"
+edition = "2018"
+authors = ["luozijun <luozijun.assistant@gmail.com>"]
+description = "Bindings to CoreVideo for OS X"
+license = "MIT"
+homepage   = "https://github.com/luozijun/rust-corevideo-sys"
+repository = "https://github.com/luozijun/rust-corevideo-sys"
+documentation = "https://docs.rs/corevideo-sys/*/x86_64-apple-darwin/corevideo_sys"
+
+[dependencies]
+libc = "0.2"
+core-foundation-sys = "0.6.2"
+coremedia-sys = "0.0.2"
