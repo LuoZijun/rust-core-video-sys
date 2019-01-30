@@ -1,20 +1,24 @@
-use core_foundation_sys::{
+use crate::libc::size_t;
+use crate::core_foundation_sys::{
     base::{CFAllocatorRef, CFTypeID, CFTypeRef},
     dictionary::CFDictionaryRef,
+    string::CFStringRef,
 };
-
-use libc::size_t;
-
 use crate::{
-    base::CVOptionFlags, image_buffer::CVImageBufferRef, metal_texture::CVMetalTextureRef,
-    r#return::CVReturn,
+    base::CVOptionFlags,
+    image_buffer::CVImageBufferRef, 
+    metal_texture::CVMetalTextureRef,
+    return_::CVReturn,
 };
+
 
 pub type CVMetalTextureCacheRef = CFTypeRef;
 
 extern "C" {
-    pub fn CVMetalTextureCacheGetTypeID() -> CFTypeID;
+    pub static kCVMetalTextureCacheMaximumTextureAgeKey: CFStringRef;
 
+
+    pub fn CVMetalTextureCacheGetTypeID() -> CFTypeID;
     pub fn CVMetalTextureCacheCreate(
         allocator: CFAllocatorRef,
         cacheAttributes: CFDictionaryRef,
@@ -22,7 +26,6 @@ extern "C" {
         textureAttributes: CFDictionaryRef,
         cacheOut: *mut CVMetalTextureCacheRef,
     ) -> CVReturn;
-
     pub fn CVMetalTextureCacheCreateTextureFromImage(
         allocator: CFAllocatorRef,
         textureCache: CVMetalTextureCacheRef,
@@ -34,6 +37,6 @@ extern "C" {
         planeIndex: size_t,
         textureOut: *mut CVMetalTextureRef,
     ) -> CVReturn;
-
-    pub fn CVMetalTextureCacheFlush(textureCache: CVMetalTextureCacheRef, options: CVOptionFlags);
+    pub fn CVMetalTextureCacheFlush(textureCache: CVMetalTextureCacheRef,
+                                    options: CVOptionFlags);
 }

@@ -1,6 +1,10 @@
-use core_foundation_sys::base::{Boolean, CFTypeID};
+use crate::core_foundation_sys::base::{ Boolean, CFTypeID };
 
-use crate::{image_buffer::CVImageBufferRef, GLenum, GLuint};
+use crate::{
+    GLenum, GLuint,
+    image_buffer::CVImageBufferRef,
+};
+
 
 pub type CVOpenGLESTextureRef = CVImageBufferRef;
 

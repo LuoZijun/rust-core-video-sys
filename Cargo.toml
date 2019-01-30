@@ -8,9 +8,23 @@ homepage   = "https://github.com/luozijun/rust-corevideo-sys"
 repository = "https://github.com/luozijun/rust-corevideo-sys"
 documentation = "https://docs.rs/corevideo-sys/*/x86_64-apple-darwin/corevideo_sys"
 edition = "2018"
+build = "build.rs"
+links = "CoreVideo"
+
 
 [dependencies]
+cfg-if = "0.1"
 libc = "0.2.47"
 objc = "0.2.5"
 core-foundation-sys = "0.6.2"
 metal = { version = "0.14.0", features = ["private"] }
+
+[features]
+default = [ "display_link", ]
+all = [ "display_link", "direct3d", "io_suface", "opengl" ]
+
+display_link = [ "opengl", ]
+direct3d  = [ ]
+io_suface = [ ]
+opengl    = [ ]
+
