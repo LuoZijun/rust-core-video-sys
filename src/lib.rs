@@ -1,52 +1,83 @@
-#![allow(non_snake_case, non_camel_case_types, non_upper_case_globals, improper_ctypes)]
-#![cfg(any(target_os = "macos", target_os = "ios"))]
+#![allow(
+    non_snake_case,
+    non_camel_case_types,
+    non_upper_case_globals,
+    improper_ctypes
+)]
 
+#[macro_use]
+extern crate cfg_if;
 extern crate libc;
+extern crate metal;
+extern crate objc;
 extern crate core_foundation_sys;
-extern crate coremedia_sys;
 
 
-use libc::{c_void, size_t};
-use coremedia_sys::OSType;
-use core_foundation_sys::base::{Boolean, CFTypeID, CFTypeRef};
+pub(crate) type OSType = u32;
+pub(crate) type GLenum = libc::c_uint;
+pub(crate) type GLsizei = libc::c_int;
+pub(crate) type GLint = libc::c_int;
+pub(crate) type GLuint = libc::c_uint;
 
 
-pub type CVReturn = i32;
-pub type CVPixelBufferLockFlags = u64;
-pub type CVBufferRef = *mut __CVBuffer;
-pub type CVImageBufferRef = CVBufferRef;
-pub type CVPixelBufferRef = CVImageBufferRef;
-pub type CVOptionFlags = u64;
+pub mod base;
+pub mod buffer;
+pub mod return_;
+pub mod image_buffer;
+pub mod pixel_buffer;
+pub mod pixel_buffer_pool;
+pub mod pixel_format_description;
+pub mod metal_texture;
+pub mod metal_texture_cache;
 
-pub const kCVPixelBufferLock_ReadOnly: CVPixelBufferLockFlags = 1;
+pub use self::base::*;
+pub use self::buffer::*;
+pub use self::return_::*;
+pub use self::image_buffer::*;
+pub use self::pixel_buffer::*;
+pub use self::pixel_buffer_pool::*;
+pub use self::pixel_format_description::*;
+pub use self::metal_texture::*;
+pub use self::metal_texture_cache::*;
 
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct __CVBuffer;
 
-pub type CVPixelBufferPoolRef = CFTypeRef;
+cfg_if! {
+    if #[cfg(feature = "display_link")] {
+        pub mod host_time;
+        pub mod display_link;
 
-
-#[link(name="CoreVideo", kind="framework")]
-extern {
-    pub fn CVBufferGetTypeID() -> CFTypeID;
-    pub fn CVPixelBufferLockBaseAddress(pixelBuffer: CVPixelBufferRef,
-                                        lockFlags: CVOptionFlags)
-                                        -> CVReturn;
-    pub fn CVPixelBufferUnlockBaseAddress(pixelBuffer: CVPixelBufferRef,
-                                          unlockFlags: CVOptionFlags)
-                                          -> CVReturn;
-    pub fn CVPixelBufferGetBaseAddressOfPlane(pixelBuffer: CVPixelBufferRef,
-                                              planeIndex: size_t)
-                                              -> *mut c_void;
-    pub fn CVPixelBufferIsPlanar(pixelBuffer: CVPixelBufferRef) -> Boolean;
-    pub fn CVPixelBufferGetPixelFormatType(pixelBuffer: CVPixelBufferRef) -> OSType;
-    pub fn CVPixelBufferGetPlaneCount(pixelBuffer: CVPixelBufferRef) -> size_t;
-    pub fn CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer: CVPixelBufferRef,
-                                              planeIndex: size_t)
-                                              -> size_t;
-    pub fn CVPixelBufferGetWidthOfPlane(pixelBuffer: CVPixelBufferRef, planeIndex: size_t)
-                                        -> size_t;
-    pub fn CVPixelBufferGetHeightOfPlane(pixelBuffer: CVPixelBufferRef, planeIndex: size_t)
-                                         -> size_t;
+        pub use self::host_time::*;
+        pub use self::display_link::*;
+    }
 }
+
+cfg_if! {
+    if #[cfg(feature = "opengl")] {
+        pub mod opengl_buffer;
+        pub mod opengl_buffer_pool;
+        pub mod opengl_texture;
+        pub mod opengl_texture_cache;
+
+        pub use self::opengl_buffer::*;
+        pub use self::opengl_buffer_pool::*;
+        pub use self::opengl_texture::*;
+        pub use self::opengl_texture_cache::*;
+    }
+}
+
+cfg_if! {
+    if #[cfg(feature = "io_suface")] {
+        pub mod pixel_buffer_io_surface;
+
+        pub use self::pixel_buffer_io_surface::*;
+    }
+}
+
+
+pub mod open_gl_es_texture;
+pub mod open_gl_es_texture_cache;
+
+pub use self::open_gl_es_texture::*;
+pub use self::open_gl_es_texture_cache::*;
+
+
