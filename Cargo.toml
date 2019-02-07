@@ -1,6 +1,6 @@
 [package]
 name = "core-video-sys"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["luozijun <luozijun.assistant@gmail.com>", "michael.laifx <cihv2@163.com>"]
 description = "Bindings to CoreVideo.framework for macOS and iOS"
 license = "MIT"
@@ -9,8 +9,6 @@ repository = "https://github.com/luozijun/rust-core-video-sys"
 documentation = "https://docs.rs/core-video-sys/*/x86_64-apple-darwin/core-video-sys"
 edition = "2018"
 build = "build.rs"
-links = "CoreVideo"
-
 
 [dependencies]
 cfg-if = "0.1"
