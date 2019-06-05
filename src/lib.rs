@@ -43,6 +43,8 @@ pub use self::metal_texture_cache::*;
 
 cfg_if! {
     if #[cfg(feature = "display_link")] {
+        extern crate core_graphics;
+
         pub mod host_time;
         pub mod display_link;
 

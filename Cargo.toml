@@ -17,11 +17,15 @@ objc = "0.2.5"
 core-foundation-sys = "0.6.2"
 metal = { version = "0.14.0", features = ["private"] }
 
+[dependencies.core-graphics]
+version = "0.17.3"
+optional = true
+
 [features]
 default = [ "display_link", ]
 all = [ "display_link", "direct3d", "io_suface", "opengl" ]
 
-display_link = [ "opengl", ]
+display_link = [ "opengl", "core-graphics" ]
 direct3d  = [ ]
 io_suface = [ ]
 opengl    = [ ]
