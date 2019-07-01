@@ -15,14 +15,18 @@ cfg-if = "0.1"
 libc = "0.2.47"
 objc = "0.2.5"
 core-foundation-sys = "0.6.2"
-metal = { version = "0.14.0", features = ["private"] }
+
+[dependencies.metal]
+version = "0.14.0"
+features = ["private"]
+optional = true
 
 [dependencies.core-graphics]
 version = "0.17.3"
 optional = true
 
 [features]
-default = [ "display_link", ]
+default = [ "display_link", "metal" ]
 all = [ "display_link", "direct3d", "io_suface", "opengl" ]
 
 display_link = [ "opengl", "core-graphics" ]

@@ -8,7 +8,6 @@
 #[macro_use]
 extern crate cfg_if;
 extern crate libc;
-extern crate metal;
 extern crate objc;
 extern crate core_foundation_sys;
 
@@ -27,8 +26,6 @@ pub mod image_buffer;
 pub mod pixel_buffer;
 pub mod pixel_buffer_pool;
 pub mod pixel_format_description;
-pub mod metal_texture;
-pub mod metal_texture_cache;
 
 pub use self::base::*;
 pub use self::buffer::*;
@@ -37,9 +34,18 @@ pub use self::image_buffer::*;
 pub use self::pixel_buffer::*;
 pub use self::pixel_buffer_pool::*;
 pub use self::pixel_format_description::*;
-pub use self::metal_texture::*;
-pub use self::metal_texture_cache::*;
 
+cfg_if! {
+    if #[cfg(feature = "metal")] {
+        extern crate metal;
+
+        pub mod metal_texture;
+        pub mod metal_texture_cache;
+
+        pub use self::metal_texture::*;
+        pub use self::metal_texture_cache::*;
+    }
+}
 
 cfg_if! {
     if #[cfg(feature = "display_link")] {
