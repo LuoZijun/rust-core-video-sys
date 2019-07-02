@@ -1,6 +1,6 @@
 [package]
 name = "core-video-sys"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["luozijun <luozijun.assistant@gmail.com>", "michael.laifx <cihv2@163.com>"]
 description = "Bindings to CoreVideo.framework for macOS and iOS"
 license = "MIT"
