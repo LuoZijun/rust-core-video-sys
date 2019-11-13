@@ -14,7 +14,7 @@ build = "build.rs"
 cfg-if = "0.1"
 libc = "0.2.47"
 objc = "0.2.5"
-core-foundation-sys = "0.6.2"
+core-foundation-sys = "0.7.0"
 
 [dependencies.metal]
 version = "0.17.0"
