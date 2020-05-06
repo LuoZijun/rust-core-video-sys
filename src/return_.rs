@@ -1,6 +1,5 @@
-use crate::libc::{ int32_t, };
 
-pub type CVReturn = int32_t;
+pub type CVReturn = i32;
 
 
 pub const kCVReturnSuccess: CVReturn                         = 0;

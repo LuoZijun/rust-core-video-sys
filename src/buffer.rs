@@ -1,4 +1,3 @@
-use crate::libc::{ uint32_t, };
 use crate::core_foundation_sys::{
     base::{ CFTypeRef, },
     string::CFStringRef,
@@ -12,7 +11,7 @@ pub enum __CVBuffer { }
 pub type CVBufferRef = *mut __CVBuffer;
 
 
-pub type CVAttachmentMode = uint32_t;
+pub type CVAttachmentMode = u32;
 pub const kCVAttachmentMode_ShouldNotPropagate: CVAttachmentMode = 0;
 pub const kCVAttachmentMode_ShouldPropagate: CVAttachmentMode = 1;
 

@@ -17,6 +17,8 @@ matrix:
       script:
         - cargo build --release --all
         - cargo test --release --all
+        - cargo test --release --all-features
+        - cargo test --release --no-default-features
         - cargo doc --release --no-deps --all
     - name: "macOS Rust Nightly"
       os: osx
@@ -24,4 +26,6 @@ matrix:
       script:
         - cargo build --release --all
         - cargo test --release --all
+        - cargo test --release --all-features
+        - cargo test --release --no-default-features
         - cargo doc --release --no-deps --all

@@ -12,6 +12,11 @@ extern crate objc;
 extern crate core_foundation_sys;
 
 
+#[cfg(any(target_os = "macos", target_os = "ios"))]
+#[link(name = "CoreVideo", kind = "framework")]
+extern "C" { }
+
+
 pub(crate) type OSType = u32;
 pub(crate) type GLenum = libc::c_uint;
 pub(crate) type GLsizei = libc::c_int;

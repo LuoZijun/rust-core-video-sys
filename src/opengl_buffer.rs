@@ -1,4 +1,4 @@
-use crate::libc::{ size_t, };
+use crate::libc::size_t;
 use crate::core_foundation_sys::{
     base::{ CFAllocatorRef, CFTypeID, },
     dictionary::CFDictionaryRef,

@@ -1,4 +1,4 @@
-use crate::libc::{ c_void, int32_t, uint32_t, size_t, };
+use crate::libc::{ c_void, size_t, };
 use crate::core_foundation_sys::{
     base::{ Boolean, CFAllocatorRef, CFTypeID },
     dictionary::CFDictionaryRef,
@@ -98,9 +98,9 @@ pub const kCVPixelBufferLock_ReadOnly: CVPixelBufferLockFlags = 1;
 #[derive(Debug, Clone, Copy)]
 pub struct CVPlanarComponentInfo {
     /// offset from main base address to base address of this plane, big-endian 
-    pub offset: int32_t,
+    pub offset: i32,
     /// bytes per row of this plane, big-endian
-    pub rowBytes: uint32_t,
+    pub rowBytes: u32,
 }
 
 #[repr(C)]
