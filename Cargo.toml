@@ -21,7 +21,7 @@ features = ["private"]
 optional = true
 
 [dependencies.core-graphics]
-version = "0.19"
+version = "0.21"
 optional = true
 
 [features]
