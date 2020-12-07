@@ -10,7 +10,7 @@ documentation = "https://docs.rs/core-video-sys/*/x86_64-apple-darwin/core-video
 edition = "2018"
 
 [dependencies]
-cfg-if = "0.1"
+cfg-if = "1.0"
 libc = "0.2"
 objc = "0.2"
 core-foundation-sys = "0.8"
