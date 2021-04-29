@@ -16,7 +16,7 @@ objc = "0.2"
 core-foundation-sys = "0.8"
 
 [dependencies.metal]
-version = "0.20"
+version = "0.22"
 features = ["private"]
 optional = true
 
