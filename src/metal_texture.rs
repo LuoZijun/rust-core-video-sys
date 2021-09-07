@@ -1,19 +1,15 @@
-use metal::Texture;
 use core_foundation_sys::{
-    base::{ Boolean, CFTypeID, },
+    base::{Boolean, CFTypeID},
     string::CFStringRef,
 };
+use metal::Texture;
 
-use crate::{
-    image_buffer::CVImageBufferRef,
-};
-
+use crate::image_buffer::CVImageBufferRef;
 
 pub type CVMetalTextureRef = CVImageBufferRef;
 
 extern "C" {
     pub static kCVMetalTextureUsage: CFStringRef;
-
 
     pub fn CVMetalTextureGetTypeID() -> CFTypeID;
     pub fn CVMetalTextureGetTexture(image: CVMetalTextureRef) -> Texture;

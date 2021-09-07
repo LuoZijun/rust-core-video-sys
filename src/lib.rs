@@ -10,8 +10,7 @@ extern crate cfg_if;
 
 #[cfg(any(target_os = "macos", target_os = "ios"))]
 #[link(name = "CoreVideo", kind = "framework")]
-extern "C" { }
-
+extern "C" {}
 
 pub(crate) type OSType = u32;
 pub(crate) type GLenum = libc::c_uint;
@@ -19,22 +18,21 @@ pub(crate) type GLsizei = libc::c_int;
 pub(crate) type GLint = libc::c_int;
 pub(crate) type GLuint = libc::c_uint;
 
-
 pub mod base;
 pub mod buffer;
-pub mod return_;
 pub mod image_buffer;
 pub mod pixel_buffer;
 pub mod pixel_buffer_pool;
 pub mod pixel_format_description;
+pub mod return_;
 
 pub use self::base::*;
 pub use self::buffer::*;
-pub use self::return_::*;
 pub use self::image_buffer::*;
 pub use self::pixel_buffer::*;
 pub use self::pixel_buffer_pool::*;
 pub use self::pixel_format_description::*;
+pub use self::return_::*;
 
 cfg_if! {
     if #[cfg(feature = "metal")] {
@@ -78,11 +76,8 @@ cfg_if! {
     }
 }
 
-
 pub mod open_gl_es_texture;
 pub mod open_gl_es_texture_cache;
 
 pub use self::open_gl_es_texture::*;
 pub use self::open_gl_es_texture_cache::*;
-
-

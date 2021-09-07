@@ -19,7 +19,6 @@ extern "C" {
     pub fn CVGetHostClockMinimumTimeDelta() -> u32;
 }
 
-
 #[test]
 fn test_get_curr_time() {
     unsafe {
