@@ -1,6 +1,6 @@
-use crate::libc::size_t;
-use crate::objc::runtime::Object;
-use crate::core_foundation_sys::{
+use libc::size_t;
+use objc::runtime::Object;
+use core_foundation_sys::{
     base::{ CFAllocatorRef, CFTypeRef },
     dictionary::CFDictionaryRef,
 };

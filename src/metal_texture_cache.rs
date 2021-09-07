@@ -1,5 +1,5 @@
-use crate::libc::size_t;
-use crate::core_foundation_sys::{
+use libc::size_t;
+use core_foundation_sys::{
     base::{CFAllocatorRef, CFTypeID, CFTypeRef},
     dictionary::CFDictionaryRef,
     string::CFStringRef,

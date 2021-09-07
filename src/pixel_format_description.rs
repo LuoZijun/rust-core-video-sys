@@ -1,5 +1,5 @@
-use crate::libc::{ c_void, };
-use crate::core_foundation_sys::{
+use libc::{ c_void, };
+use core_foundation_sys::{
     base::{ Boolean, CFAllocatorRef, CFIndex, },
     dictionary::CFDictionaryRef,
     array::CFArrayRef,

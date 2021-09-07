@@ -7,10 +7,6 @@
 
 #[macro_use]
 extern crate cfg_if;
-extern crate libc;
-extern crate objc;
-extern crate core_foundation_sys;
-
 
 #[cfg(any(target_os = "macos", target_os = "ios"))]
 #[link(name = "CoreVideo", kind = "framework")]
@@ -42,8 +38,6 @@ pub use self::pixel_format_description::*;
 
 cfg_if! {
     if #[cfg(feature = "metal")] {
-        extern crate metal;
-
         pub mod metal_texture;
         pub mod metal_texture_cache;
 
@@ -54,8 +48,6 @@ cfg_if! {
 
 cfg_if! {
     if #[cfg(feature = "display_link")] {
-        extern crate core_graphics;
-
         pub mod host_time;
         pub mod display_link;
 

@@ -1,4 +1,4 @@
-use crate::core_foundation_sys::base::{ Boolean, CFTypeID };
+use core_foundation_sys::base::{ Boolean, CFTypeID };
 
 use crate::{
     GLenum, GLuint,

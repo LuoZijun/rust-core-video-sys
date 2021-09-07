@@ -1,5 +1,5 @@
-use crate::metal::Texture;
-use crate::core_foundation_sys::{
+use metal::Texture;
+use core_foundation_sys::{
     base::{ Boolean, CFTypeID, },
     string::CFStringRef,
 };

@@ -1,8 +1,10 @@
+use core_foundation_sys::base::CFTypeID;
 use crate::{
-    core_foundation_sys::base::CFTypeID,
-    core_graphics::display::CGDirectDisplayID,
     CVReturn, CVTime,
 };
+
+// avoid depending on core-graphics
+pub type CGDirectDisplayID = u32;
 
 #[derive(Debug, Copy, Clone)]
 pub enum __CVDisplayLink { }
