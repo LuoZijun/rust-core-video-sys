@@ -1,15 +1,10 @@
-use crate::libc::size_t;
-use crate::core_foundation_sys::{
-    base::{ CFAllocatorRef, CFTypeID, },
+use crate::{image_buffer::CVImageBufferRef, return_::CVReturn, GLenum, GLint};
+use core_foundation_sys::{
+    base::{CFAllocatorRef, CFTypeID},
     dictionary::CFDictionaryRef,
     string::CFStringRef,
 };
-use crate::{
-    GLenum, GLint,
-    return_::CVReturn,
-    image_buffer::CVImageBufferRef,
-};
-
+use libc::size_t;
 
 pub type CVOpenGLBufferRef = CVImageBufferRef;
 // https://developer.apple.com/documentation/appkit/nsopenglcontext/1436158-cglcontextobj?language=objc
@@ -24,19 +19,22 @@ extern "C" {
     pub static kCVOpenGLBufferInternalFormat: CFStringRef;
     pub static kCVOpenGLBufferMaximumMipmapLevel: CFStringRef;
 
-
     pub fn CVOpenGLBufferGetTypeID() -> CFTypeID;
     pub fn CVOpenGLBufferRetain(buffer: CVOpenGLBufferRef) -> CVOpenGLBufferRef;
     pub fn CVOpenGLBufferRelease(buffer: CVOpenGLBufferRef);
-    pub fn CVOpenGLBufferCreate(allocator: CFAllocatorRef,
-                                width: size_t,
-                                height: size_t,
-                                attributes: CFDictionaryRef,
-                                bufferOut: *mut CVOpenGLBufferRef) -> CVReturn;
+    pub fn CVOpenGLBufferCreate(
+        allocator: CFAllocatorRef,
+        width: size_t,
+        height: size_t,
+        attributes: CFDictionaryRef,
+        bufferOut: *mut CVOpenGLBufferRef,
+    ) -> CVReturn;
     pub fn CVOpenGLBufferGetAttributes(openGLBuffer: CVOpenGLBufferRef) -> CFDictionaryRef;
-    pub fn CVOpenGLBufferAttach(openGLBuffer: CVOpenGLBufferRef,
-                                cglContext: CGLContextObj,
-                                face: GLenum,
-                                level: GLint,
-                                screen: GLint) -> CVReturn;
+    pub fn CVOpenGLBufferAttach(
+        openGLBuffer: CVOpenGLBufferRef,
+        cglContext: CGLContextObj,
+        face: GLenum,
+        level: GLint,
+        screen: GLint,
+    ) -> CVReturn;
 }

@@ -1,15 +1,8 @@
-use crate::core_foundation_sys::{
-    base::{ Boolean, CFTypeID, },
-};
+use core_foundation_sys::base::{Boolean, CFTypeID};
 
-use crate::{
-    GLenum, GLuint,
-    image_buffer::CVImageBufferRef,
-};
-
+use crate::{image_buffer::CVImageBufferRef, GLenum, GLuint};
 
 pub type CVOpenGLTextureRef = CVImageBufferRef;
-
 
 extern "C" {
     pub fn CVOpenGLTextureGetTypeID() -> CFTypeID;
@@ -20,7 +13,7 @@ extern "C" {
     pub fn CVOpenGLTextureIsFlipped(image: CVOpenGLTextureRef) -> Boolean;
     // CV_EXPORT void CVOpenGLTextureGetCleanTexCoords( CVOpenGLTextureRef CV_NONNULL image,
     //                      GLfloat lowerLeft[2],
-    //                      GLfloat lowerRight[2], 
+    //                      GLfloat lowerRight[2],
     //                      GLfloat upperRight[2],
     //                      GLfloat upperLeft[2] ) AVAILABLE_MAC_OS_X_VERSION_10_4_AND_LATER;
 }

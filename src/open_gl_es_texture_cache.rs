@@ -1,17 +1,14 @@
-use crate::libc::size_t;
-use crate::objc::runtime::Object;
-use crate::core_foundation_sys::{
-    base::{ CFAllocatorRef, CFTypeRef },
+use core_foundation_sys::{
+    base::{CFAllocatorRef, CFTypeRef},
     dictionary::CFDictionaryRef,
 };
+use libc::size_t;
+use objc::runtime::Object;
 
 use crate::{
+    image_buffer::CVImageBufferRef, open_gl_es_texture::CVOpenGLESTextureRef, return_::CVReturn,
     GLenum, GLint, GLsizei,
-    return_::CVReturn,
-    image_buffer::CVImageBufferRef, 
-    open_gl_es_texture::CVOpenGLESTextureRef, 
 };
-
 
 pub type CVOpenGLESTextureCacheRef = CFTypeRef;
 pub type CVEAGLContext = *mut Object;

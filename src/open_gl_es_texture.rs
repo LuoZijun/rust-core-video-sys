@@ -1,10 +1,6 @@
-use crate::core_foundation_sys::base::{ Boolean, CFTypeID };
+use core_foundation_sys::base::{Boolean, CFTypeID};
 
-use crate::{
-    GLenum, GLuint,
-    image_buffer::CVImageBufferRef,
-};
-
+use crate::{image_buffer::CVImageBufferRef, GLenum, GLuint};
 
 pub type CVOpenGLESTextureRef = CVImageBufferRef;
 
@@ -17,10 +13,10 @@ extern "C" {
 
     pub fn CVOpenGLESTextureIsFlipped(image: CVOpenGLESTextureRef) -> Boolean;
 
-//pub fn CVOpenGLESTextureGetCleanTexCoords( image:CVOpenGLESTextureRef  ,
-//    GLfloat lowerLeft[ 2],
-//    GLfloat lowerRight[ 2],
-//    GLfloat upperRight[ 2],
-//    GLfloat upperLeft[ 2] );
+    //pub fn CVOpenGLESTextureGetCleanTexCoords( image:CVOpenGLESTextureRef  ,
+    //    GLfloat lowerLeft[ 2],
+    //    GLfloat lowerRight[ 2],
+    //    GLfloat upperRight[ 2],
+    //    GLfloat upperLeft[ 2] );
 
 }

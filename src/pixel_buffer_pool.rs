@@ -1,17 +1,11 @@
-use crate::libc::{ c_void, };
-use crate::core_foundation_sys::{
-    base::{ CFAllocatorRef, CFTypeID, CFTypeRef },
+use core_foundation_sys::{
+    base::{CFAllocatorRef, CFTypeID, CFTypeRef},
     dictionary::CFDictionaryRef,
     string::CFStringRef,
 };
+use libc::c_void;
 
-use crate::{
-    base::CVOptionFlags,
-    pixel_buffer::CVPixelBufferRef,
-    return_::CVReturn,
-
-};
-
+use crate::{base::CVOptionFlags, pixel_buffer::CVPixelBufferRef, return_::CVReturn};
 
 pub type CVPixelBufferPoolRef = CFTypeRef;
 pub type CVPixelBufferPoolFlushFlags = CVOptionFlags;
@@ -28,19 +22,25 @@ extern "C" {
     pub fn CVPixelBufferPoolGetTypeID() -> CFTypeID;
     pub fn CVPixelBufferPoolRetain(pixelBufferPool: CVPixelBufferPoolRef) -> CVPixelBufferPoolRef;
     pub fn CVPixelBufferPoolRelease(pixelBufferPool: CVPixelBufferPoolRef) -> c_void;
-    pub fn CVPixelBufferPoolCreate(allocator: CFAllocatorRef,
-                                   poolAttributes: CFDictionaryRef,
-                                   pixelBufferAttributes: CFDictionaryRef,
-                                   poolOut: *mut CVPixelBufferPoolRef) -> CVReturn;
+    pub fn CVPixelBufferPoolCreate(
+        allocator: CFAllocatorRef,
+        poolAttributes: CFDictionaryRef,
+        pixelBufferAttributes: CFDictionaryRef,
+        poolOut: *mut CVPixelBufferPoolRef,
+    ) -> CVReturn;
     pub fn CVPixelBufferPoolGetAttributes(pool: CVPixelBufferPoolRef) -> CFDictionaryRef;
-    pub fn CVPixelBufferPoolGetPixelBufferAttributes(pool: CVPixelBufferPoolRef) -> CFDictionaryRef;
-    pub fn CVPixelBufferPoolCreatePixelBuffer(allocator: CFAllocatorRef,
-                                              pixelBufferPool: CVPixelBufferPoolRef,
-                                              pixelBufferOut: *mut CVPixelBufferRef) -> CVReturn;
-    pub fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(allocator: CFAllocatorRef,
-                                                               pixelBufferPool: CVPixelBufferPoolRef,
-                                                               auxAttributes: CFDictionaryRef,
-                                                               pixelBufferOut: *mut CVPixelBufferRef) -> CVReturn;
-    pub fn CVPixelBufferPoolFlush(pool: CVPixelBufferPoolRef,
-                                  options: CVPixelBufferPoolFlushFlags);
+    pub fn CVPixelBufferPoolGetPixelBufferAttributes(pool: CVPixelBufferPoolRef)
+        -> CFDictionaryRef;
+    pub fn CVPixelBufferPoolCreatePixelBuffer(
+        allocator: CFAllocatorRef,
+        pixelBufferPool: CVPixelBufferPoolRef,
+        pixelBufferOut: *mut CVPixelBufferRef,
+    ) -> CVReturn;
+    pub fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
+        allocator: CFAllocatorRef,
+        pixelBufferPool: CVPixelBufferPoolRef,
+        auxAttributes: CFDictionaryRef,
+        pixelBufferOut: *mut CVPixelBufferRef,
+    ) -> CVReturn;
+    pub fn CVPixelBufferPoolFlush(pool: CVPixelBufferPoolRef, options: CVPixelBufferPoolFlushFlags);
 }

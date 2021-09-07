@@ -1,4 +1,4 @@
-use crate::libc::c_double;
+use libc::c_double;
 
 extern "C" {
     /// @function   CVGetCurrentHostTime
@@ -18,7 +18,6 @@ extern "C" {
     /// @result     The smallest valid increment in the host time base.
     pub fn CVGetHostClockMinimumTimeDelta() -> u32;
 }
-
 
 #[test]
 fn test_get_curr_time() {

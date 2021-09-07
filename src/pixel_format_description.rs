@@ -1,20 +1,15 @@
-use crate::libc::{ c_void, };
-use crate::core_foundation_sys::{
-    base::{ Boolean, CFAllocatorRef, CFIndex, },
-    dictionary::CFDictionaryRef,
+use core_foundation_sys::{
     array::CFArrayRef,
+    base::{Boolean, CFAllocatorRef, CFIndex},
+    dictionary::CFDictionaryRef,
     string::CFStringRef,
 };
+use libc::c_void;
 
-use crate::{
-    OSType,
-    pixel_buffer::CVPixelBufferRef,
-};
+use crate::{pixel_buffer::CVPixelBufferRef, OSType};
 
-
-pub type CVFillExtendedPixelsCallBack = extern "C" fn (pixelBuffer: CVPixelBufferRef,
-                                                       refCon: *mut c_void) -> Boolean;
-
+pub type CVFillExtendedPixelsCallBack =
+    extern "C" fn(pixelBuffer: CVPixelBufferRef, refCon: *mut c_void) -> Boolean;
 
 #[repr(C)]
 #[derive(Debug, Clone, Copy)]
@@ -22,9 +17,7 @@ pub struct CVFillExtendedPixelsCallBackData {
     pub version: CFIndex,
     pub fillCallBack: CVFillExtendedPixelsCallBack,
     pub refCon: *mut c_void,
-
 }
-
 
 extern "C" {
     pub static kCVPixelFormatName: CFStringRef;
@@ -41,10 +34,10 @@ extern "C" {
     /// kCFBooleanTrue indicates that the format contains alpha and some images may be considered transparent
     /// kCFBooleanFalse indicates that there is no alpha and images are always opaque.
     pub static kCVPixelFormatContainsAlpha: CFStringRef;
-    
+
     /// kCFBooleanTrue indicates that the format contains YCbCr data
     pub static kCVPixelFormatContainsYCbCr: CFStringRef;
-    
+
     /// kCFBooleanTrue indicates that the format contains RGB data
     pub static kCVPixelFormatContainsRGB: CFStringRef;
 
@@ -58,10 +51,9 @@ extern "C" {
 
     /// All buffers have one or more image planes.
     /// Each plane may contain a single or an interleaved set of components
-    /// For simplicity sake, 
+    /// For simplicity sake,
     /// pixel formats that are not planar may place the required format keys at the top level dictionary.
     pub static kCVPixelFormatPlanes: CFStringRef;
-
 
     pub static kCVPixelFormatBlockWidth: CFStringRef;
     pub static kCVPixelFormatBlockHeight: CFStringRef;
@@ -70,14 +62,14 @@ extern "C" {
     /// For simple pixel formats this will be equivalent to the traditional bitsPerPixel value.
     pub static kCVPixelFormatBitsPerBlock: CFStringRef;
 
-    /// Used to state requirements on block multiples.  v210 would be '8' here for the horizontal case, 
+    /// Used to state requirements on block multiples.  v210 would be '8' here for the horizontal case,
     /// to match the standard v210 row alignment value of 48.
     /// These may be assumed as 1 if not present.
     pub static kCVPixelFormatBlockHorizontalAlignment: CFStringRef;
     pub static kCVPixelFormatBlockVerticalAlignment: CFStringRef;
 
     /// CFData containing the bit pattern for a block of black pixels.  If absent, black is assumed to be all zeros.
-    /// If present, this should be bitsPerPixel bits long -- if bitsPerPixel is less than a byte, repeat the bit pattern 
+    /// If present, this should be bitsPerPixel bits long -- if bitsPerPixel is less than a byte, repeat the bit pattern
     /// for the full byte.
     pub static kCVPixelFormatBlackBlock: CFStringRef;
 
@@ -103,14 +95,18 @@ extern "C" {
 
     pub static kCVPixelFormatFillExtendedPixelsCallback: CFStringRef;
 
-
-    pub fn CVPixelFormatDescriptionCreateWithPixelFormatType(allocator: CFAllocatorRef,
-                                                             pixelFormat: OSType) -> CFDictionaryRef;
-    pub fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(allocator: CFAllocatorRef) -> CFArrayRef;
-    pub fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(description: CFDictionaryRef,
-                                                                          pixelFormat: OSType);
+    pub fn CVPixelFormatDescriptionCreateWithPixelFormatType(
+        allocator: CFAllocatorRef,
+        pixelFormat: OSType,
+    ) -> CFDictionaryRef;
+    pub fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
+        allocator: CFAllocatorRef,
+    ) -> CFArrayRef;
+    pub fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(
+        description: CFDictionaryRef,
+        pixelFormat: OSType,
+    );
 }
-
 
 #[cfg(feature = "direct3d")]
 extern "C" {
