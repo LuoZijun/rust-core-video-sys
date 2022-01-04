@@ -1,5 +1,4 @@
-use crate::libc::size_t;
-use crate::objc::runtime::Object;
+use crate::libc::{c_void, size_t};
 use crate::core_foundation_sys::{
     base::{ CFAllocatorRef, CFTypeRef },
     dictionary::CFDictionaryRef,
@@ -14,7 +13,7 @@ use crate::{
 
 
 pub type CVOpenGLESTextureCacheRef = CFTypeRef;
-pub type CVEAGLContext = *mut Object;
+pub type CVEAGLContext = *mut c_void;
 
 extern "C" {
     pub fn CVOpenGLESTextureCacheCreate(

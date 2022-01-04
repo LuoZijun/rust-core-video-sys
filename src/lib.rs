@@ -8,7 +8,6 @@
 #[macro_use]
 extern crate cfg_if;
 extern crate libc;
-extern crate objc;
 extern crate core_foundation_sys;
 
 
